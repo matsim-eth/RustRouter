@@ -3,22 +3,22 @@
 
 Download a wheel or platform ZIP from
 [GitHub Releases](https://github.com/matsim-eth/RustRouter/releases/latest).
-No Rust/Cargo or C++ compiler is needed. The repository is private, so GitHub login and repository
-access are currently required. This is a GitHub distribution, not a package published to PyPI.
+No Rust/Cargo or C++ compiler is needed. The repository and release downloads are public; GitHub authentication is not required. This is a GitHub distribution, not a package published to PyPI.
 
-Only attached release assets are available to download. Version 0.2.0 initially provides tested
-Windows x64 packages. Linux/macOS builds are configured, but GitHub Actions currently fails before
-creating any jobs in this repository; those platform binaries have not been built or published.
+Version 0.3.0 provides tested Windows x64 full packages and native-only Windows/Linux x64 ZIPs.
+Linux JNI/C libraries are cross-compiled for glibc 2.17; Linux execution has not been tested locally.
+Native-only ZIPs include native libraries and provenance, without Python wheels, Java jars or CLI.
+Hosted automation currently fails before jobs start; no macOS binaries are claimed in this release.
 The build targets and their runtime requirements are:
 
 | Archive suffix | Runtime |
 | --- | --- |
 | `windows-x86_64` | 64-bit Windows, x64 Python/JVM; Microsoft Visual C++ 2015–2022 runtime |
-| `linux-x86_64` | x64 glibc Linux, Ubuntu 22.04/glibc 2.35 or newer; not Alpine/musl |
+| `linux-x86_64` | x64 glibc Linux 2.17+ for native-only ZIPs; not Alpine/musl |
 | `macos-aarch64` | Apple Silicon macOS 15 or newer, ARM64 Python/JVM |
 | `macos-x86_64` | Intel macOS 15 or newer, x64 Python/JVM |
 
-Linux wheels have a native `linux_x86_64` tag; they are not advertised as portable manylinux wheels.
+No Linux wheel is provided in this release. The source Python client can use the downloaded Linux C library.
 Python clients require Python 3.10+. Standalone Java clients require Java 17+; use the Java version
 required by your MATSim application when integrating there. The OS/architecture of the native
 library must match the Python/JVM process.
@@ -28,7 +28,7 @@ library must match the Python/JVM process.
 Download the matching `.whl` asset, then install it using its exact filename:
 
 ```text
-python -m pip install multimodal_matsim_router-0.2.0-py3-none-win_amd64.whl
+python -m pip install multimodal_matsim_router-0.3.0-py3-none-win_amd64.whl
 ```
 
 The native library is inside the wheel; no library environment variable is needed.

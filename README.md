@@ -25,7 +25,7 @@ python tools/build.py --test
 python -m pip install -e ./python
 ```
 
-This builds both native libraries and `target/java/mmrouter-java-0.2.0.jar`, then tests the Rust,
+This builds both native libraries and `target/java/mmrouter-java-0.3.0.jar`, then tests the Rust,
 Python and Java interfaces. Deployment needs the matching compiled library and language client;
 the simulation jar can bundle its library. No Rust toolchain is required at runtime.
 
@@ -54,7 +54,7 @@ to original IDs. [`docs/interop.md`](docs/interop.md) describes the complete API
 
 ## Java example
 
-Add `target/java/mmrouter-java-0.2.0.jar` to your classpath:
+Add `target/java/mmrouter-java-0.3.0.jar` to your classpath:
 
 ```java
 import java.nio.file.Path;
@@ -90,7 +90,7 @@ and reusable workspaces. Native preprocessing runs alongside controller setup, a
 caching can wrap the backend. [Supported behavior and restrictions](docs/interop.md#matsim-deployment).
 
 Standalone Java utilities can load a MATSim config with
-`MatsimRouter.load(configPath, libraryPath)` using `mmrouter-matsim-0.2.0.jar` plus the Java client.
+`MatsimRouter.load(configPath, libraryPath)` using `mmrouter-matsim-0.3.0.jar` plus the Java client.
 Python accepts the same config directly through `Router.load(configPath)`; explicit GTFS/MATSim
 schedules plus partial parameters are also supported. Both provide lightweight worker views sharing
 one native engine. See [Java layout and usage](java/README.md), [MATSim tools](java/matsim/README.md)

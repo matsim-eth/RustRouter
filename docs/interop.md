@@ -39,7 +39,7 @@ in JSON metadata; the native cost model retains its actual unbounded values.
 The result-envelope protocol remains version 1 for backward compatibility. New clients also
 require client API 2 (`mmr_api_version` / JNI `apiVersion`) so a stale library is rejected before
 the new loading entry points are used. Old numeric MATSim calls and the library name are unchanged.
-Build artifacts now use client version 0.2.0, including `mmrouter-matsim-0.2.0.jar`.
+Build artifacts now use client version 0.3.0, including `mmrouter-matsim-0.3.0.jar`.
 
 The raw open operation also accepts optional `format` and `parameters`, and a coordinate query is:
 
@@ -74,12 +74,12 @@ Cargo.lock, builds the standalone Java jar, and optionally tests all language bo
 | --- | --- |
 | `target/release/multimodal_router.dll` | Python/C interface |
 | `target/release/matsim_pt_router.dll` | Java JNI, including fast MATSim calls |
-| `target/java/mmrouter-java-0.2.0.jar` | Standalone Java client without Java dependencies |
+| `target/java/mmrouter-java-0.3.0.jar` | Standalone Java client without Java dependencies |
 | `target/native-build.json` | Platform, protocol version and SHA-256 hashes |
 
 Linux names are `libmultimodal_router.so` / `libmatsim_pt_router.so`; macOS uses `.dylib`.
 Deployment needs the language client and matching library, not a compiler/source checkout/server.
-Pin a router revision in deployment automation. Current package/API versions are 0.2.0/protocol 1.
+Pin a router revision in deployment automation. Current package/API versions are 0.3.0/protocol 1.
 
 ## Python
 
@@ -128,7 +128,7 @@ try (var router = new NativeRouter(Path.of("examples/interop/router.toml"),
 }
 ```
 
-Compile against `target/java/mmrouter-java-0.2.0.jar`. Methods return versioned JSON envelopes,
+Compile against `target/java/mmrouter-java-0.3.0.jar`. Methods return versioned JSON envelopes,
 which your application's JSON library can parse. Initialization failures throw Java exceptions;
 query errors return error envelopes. `batchJson`, `weightedBatchJson` and `requestJson` expose
 the same protocol. Use try-with-resources. Close is idempotent; in-flight native searches retain
