@@ -1,17 +1,14 @@
-<!-- Describes the first precompiled Python, Java, MATSim bridge and CLI distribution. -->
-Compiled Python wheels and platform ZIPs: **no Rust toolchain is required**.
+<!-- Describes the compiled RustRouter release and its supported platforms. -->
+# RustRouter v0.3.0
 
-- Python wheels bundle the native engine; install the matching `.whl` with `python -m pip install`.
-- ZIPs include Java client/MATSim facade jars, JNI and C libraries, the CLI and runnable examples.
-- Asynchronous MATSim config/schedule and GTFS loading, coordinate/stop-ID routing and shared
-  concurrent workers are available in both language clients.
-- These initial downloads are **Windows x64** builds. A clean installed wheel passed 120 concurrent
-  queries and coordinate routing; the Java/native integration checks also passed.
-- Linux x64 and macOS Apple Silicon/Intel automation is configured, but GitHub Actions currently
-  fails before creating any jobs (`BuildFailed` / `startup_failure`). Those downloads are not yet
-  available; no Linux/macOS validation is claimed for this release.
-- Client API 2; existing MATSim numeric JNI protocol 1 is preserved.
+- Includes the current weighted-routing locality, shared coordinate JNI, compact workspaces,
+  bounded lower-bound preparation and adaptive coordinate-search improvements.
+- Coordinate-search budgets can return feasible, non-optimal routes; flags expose truncation.
+  Explicit-endpoint and stop-to-stop APIs remain exact. See docs/interop.md for policy settings.
+- Windows x86-64 native libraries, Python wheel, Java clients and CLI are built and checked locally.
+- Linux x86-64 JNI/C libraries are cross-compiled for glibc 2.17. Linux execution is not claimed.
+- Native-only ZIPs support Maven without Rust/Cargo. Archives include source revision and checksums.
+- Existing numeric JNI protocol 1 and client API 2 remain compatible.
+- Hosted GitHub Actions currently fail before jobs start. These downloads are produced locally;
+  this release does not claim new macOS binaries or successful hosted CI.
 
-Choose a download for your OS/architecture. See the ZIP's README or
-[installation instructions](https://github.com/matsim-eth/RustRouter/blob/main/docs/binary-distribution.md)
-for runtime requirements and usage. SHA-256 files accompany each download.

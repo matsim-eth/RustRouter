@@ -64,4 +64,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          gh release create "$RELEASE_TAG" release-assets/* --verify-tag --title "MultiModalMatsimRouter $RELEASE_TAG" --notes-file docs/release-notes.md
+          gh release create "$RELEASE_TAG" release-assets/* --verify-tag --title "RustRouter $RELEASE_TAG" --notes-file docs/release-notes.md

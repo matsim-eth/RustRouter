@@ -1,7 +1,7 @@
 # Shares the versioned application API across Python's C bridge and Java's JNI bridge.
 [package]
 name = "mmrouter-service"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 [dependencies]
 multimodal-matsim-router = { path = "../.." }

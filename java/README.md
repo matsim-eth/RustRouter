@@ -12,7 +12,7 @@ java/
 ```
 
 Build with `python tools/build.py --test` from the repository root. It produces
-`target/java/mmrouter-java-0.2.0.jar`, `target/java/mmrouter-matsim-0.2.0.jar` and the host JNI
+`target/java/mmrouter-java-0.3.0.jar`, `target/java/mmrouter-matsim-0.3.0.jar` and the host JNI
 library. The standalone API targets Java 17; a full MATSim simulation uses its required JDK 25.
 
 Use `NativeRouter.load(file)` for TOML or auto-detected MATSim XML input. The Java client jar

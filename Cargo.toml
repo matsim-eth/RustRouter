@@ -1,7 +1,7 @@
 # Defines the library, CLI, dependencies, and optimized release profile.
 [package]
 name = "multimodal-matsim-router"
-version = "0.1.0"
+version = "0.3.0"
 edition = "2024"
 license = "MIT"
 description = "Extensible, exact public transport routing core for multimodal applications"

@@ -10,7 +10,7 @@ try (var router = NativeRouter.load(Path.of("examples/interop/router.toml"), lib
 ```
 
 `library` is the path to `matsim_pt_router.dll`, `libmatsim_pt_router.so` or
-`libmatsim_pt_router.dylib`. Add `mmrouter-java-0.2.0.jar` to the classpath. Where required by the
+`libmatsim_pt_router.dylib`. Add `mmrouter-java-0.3.0.jar` to the classpath. Where required by the
 JDK, launch with `--enable-native-access=ALL-UNNAMED`.
 The build helper bundles the host native library in that jar, so `NativeRouter.load(path)` also
 works without an explicit library path. Use the explicit overload to select another build.

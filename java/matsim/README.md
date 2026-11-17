@@ -3,7 +3,7 @@
 
 `MatsimRouter.load(config)` returns immediately, resolving the schedule and supported
 parameters from a MATSim config in the background. It requires no MATSim Java dependency for
-standalone utilities. Add both `mmrouter-java-0.2.0.jar` and `mmrouter-matsim-0.2.0.jar` to the
+standalone utilities. Add both `mmrouter-java-0.3.0.jar` and `mmrouter-matsim-0.3.0.jar` to the
 classpath. The Java client jar bundles its host's native library. Optional `load(config, library)`
 selects an explicit external binary; `load(config, library, overridesJson)` permits partial overrides.
 
@@ -24,7 +24,7 @@ Full executable example: [AsyncMatsimExample.java](examples/AsyncMatsimExample.j
 by the repository build helper. Example execution on Windows after `python tools/build.py --test`:
 
 ```text
-java -Xmx10g --enable-native-access=ALL-UNNAMED -cp "target/java/test-classes;target/java/mmrouter-java-0.2.0.jar;target/java/mmrouter-matsim-0.2.0.jar" AsyncMatsimExample examples/interop/matsim_config.xml target/release/matsim_pt_router.dll
+java -Xmx10g --enable-native-access=ALL-UNNAMED -cp "target/java/test-classes;target/java/mmrouter-java-0.3.0.jar;target/java/mmrouter-matsim-0.3.0.jar" AsyncMatsimExample examples/interop/matsim_config.xml target/release/matsim_pt_router.dll
 ```
 
 On Linux/macOS use `:` as the classpath separator and the corresponding SO/dylib path.

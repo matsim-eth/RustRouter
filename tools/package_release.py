@@ -46,6 +46,9 @@ def main():
     )
     run(cargo, "build", "--release", "--locked", "--bin", "mmrouter")
     manifest = json.loads((ROOT / "target/native-build.json").read_text())
+    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    if manifest.get("revision") != revision or manifest.get("version") != version:
+        raise ValueError("Build manifest does not match release source/version; rerun tools/build.py")
     artifacts = [ROOT / item["file"] for item in manifest["artifacts"]]
     # The manifest prevents accidentally packaging a stale or mismatched local library.
     for item, path in zip(manifest["artifacts"], artifacts):

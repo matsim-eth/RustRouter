@@ -9,6 +9,7 @@ import platform
 import shutil
 import subprocess
 import sys
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,6 +26,7 @@ def main():
         help="Run Rust, Python FFI and standalone Java integration checks",
     )
     args = parser.parse_args()
+    version = tomllib.loads((ROOT / "python/pyproject.toml").read_text())["project"]["version"]
     cargo = shutil.which("cargo") or str(
         Path.home() / ".cargo" / "bin" / ("cargo.exe" if os.name == "nt" else "cargo")
     )
@@ -42,7 +44,7 @@ def main():
     run("javac", "--release", "17", "-d", classes, *sources)
     (classes / "native").mkdir(exist_ok=True)
     shutil.copy2(jni, classes / "native" / jni.name)
-    jar = ROOT / "target/java/mmrouter-java-0.2.0.jar"
+    jar = ROOT / f"target/java/mmrouter-java-{version}.jar"
     run("jar", "--create", "--file", jar, "-C", classes, ".")
     matsim_classes = ROOT / "target/java/matsim-classes"
     matsim_classes.mkdir(parents=True, exist_ok=True)
@@ -56,7 +58,7 @@ def main():
         matsim_classes,
         *list((ROOT / "java/matsim/src/main/java").rglob("*.java"))
     )
-    matsim_jar = ROOT / "target/java/mmrouter-matsim-0.2.0.jar"
+    matsim_jar = ROOT / f"target/java/mmrouter-matsim-{version}.jar"
     run("jar", "--create", "--file", matsim_jar, "-C", matsim_classes, ".")
     artifacts = []
     for path in (ffi, jni, jar, matsim_jar):
@@ -66,6 +68,8 @@ def main():
     (ROOT / "target/native-build.json").write_text(
         json.dumps(
             {
+                "version": version,
+                "revision": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
                 "platform": platform.platform(),
                 "protocol_version": 1,
                 "client_api_version": 2,
